@@ -31,3 +31,14 @@ async def create_new_image(image: ImageCreate, current_user = Depends(get_curren
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f'{e}'
         )
+
+@router.patch("/{id}", response_model=ImageResponse)
+async def update_image(id: int, image: ImageUpdate, current_user = Depends(get_current_user)):
+    try:
+        updated_image = image_service.update_image(id=id, data=image.model_dump())
+        return updated_image
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f'{e}'
+        )
