@@ -12,3 +12,9 @@ def get():
 def update(id: int, data: dict):
     response = supabase.table(TABLE_NAME).update(data).eq('id', id).execute()
     return response 
+
+def delete(id: int):
+    response = supabase.table(TABLE_NAME).update({
+        'is_deleted': True
+    }).eq('id', id).execute()
+    return response

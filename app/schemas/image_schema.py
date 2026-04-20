@@ -1,8 +1,10 @@
 from pydantic import BaseModel
 
 class ImageResponse(BaseModel):
+    id: int
     name: str
     alt_text: str
+    url: str
 
 class ImageCreate(BaseModel):
     name: str
