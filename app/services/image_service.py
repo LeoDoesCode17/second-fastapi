@@ -22,9 +22,18 @@ def get_all_images():
 def update_image(id: int, data: dict):
     try:
         update_response = image_repository.update(id=id, data=data)
-        print(update_response)
         if not update_response.data:
             raise Exception(f"UPDATE: Failed to update image with id-{id}")
         return  update_response.data[0]
+    except Exception as e:
+        raise e
+    
+def delete_image(id: int):
+    try:
+        delete_response = image_repository.delete(id=id)
+        print(delete_response)
+        if not delete_response.data:
+            raise Exception(f"DELETE: Failed to delete image with id-{id}")
+        return delete_response.data[0]
     except Exception as e:
         raise e
