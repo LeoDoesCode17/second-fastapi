@@ -18,3 +18,13 @@ def get_all_images():
         return get_response.data
     except Exception as e:
         raise e
+    
+def update_image(id: int, data: dict):
+    try:
+        update_response = image_repository.update(id=id, data=data)
+        print(update_response)
+        if not update_response.data:
+            raise Exception(f"UPDATE: Failed to update image with id-{id}")
+        return  update_response.data[0]
+    except Exception as e:
+        raise e
