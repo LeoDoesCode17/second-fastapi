@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class ImageResponse(BaseModel):
     name: str
     alt_text: str
+    url: str
 
 class ImageCreate(BaseModel):
     name: str
